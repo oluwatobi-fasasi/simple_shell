@@ -30,6 +30,7 @@ int wordcount(char *str)
 /**
  * delim_nter - return the number of the delimit
  * @str: string argument
+ * @delim: a string of the delimiter
  * Return: an integer
  */
 int delim_nter(char *str, char *delim)

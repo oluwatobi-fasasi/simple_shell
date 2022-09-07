@@ -17,7 +17,7 @@ int _exec(char **argv)
 	}
 	if (child_pid == 0)
 	{
-		if (execve(argv[0], argv, environ) == -1)
+		if (execve(argv[0], argv, NULL) == -1)
 			perror("./hsh");
 		sleep(3);
 	}

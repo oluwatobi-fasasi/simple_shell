@@ -1,1 +1,2 @@
-This is a simple shell project
+# **Simple Shell** : Recreating the CSD
+
