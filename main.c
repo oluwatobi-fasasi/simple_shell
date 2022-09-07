@@ -12,10 +12,9 @@ int main(int argc, char *agv[])
 	char *buff = NULL;
 	size_t len = 0;
 	FILE *stream = stdin;
-	/*int wc;*/
-	char *argv[2];
+	int wc;
+	char **argv;
 	ssize_t nread = 0;
-	struct stat st;
 
 	while (nread >= 0)
 	{
@@ -29,16 +28,17 @@ int main(int argc, char *agv[])
 			break;
 		}
 		buff[_strlen(buff) - 1] = '\0';
-		argv[0] = buff;
-		argv[1] = NULL;
-		/*wc = wordcount(buff);*/
-		/*argv = splitstr(buff, " \n\t", wc);*/
-		/*argv[0] = findpath(argv[0]);*/
-		if (argv[0] != NULL && argc == 1 && stat(argv[0], &st) == 0)
-			_exec(argv, agv[0]);
-		else if (_strlen(buff) >= 1)
-			perror(agv[0]);
+		wc = wordcount(buff);
+		if (buff[0] != '\n' && argc == 1 && wc > 0)
+		{
+			argv = splitstr(buff, " \n\t", wc);
+			argv[0] = findpath(argv[0]);
+			if (argv[0] && access(argv[0], X_OK) == 0)
+				_exec(argv, agv[0]);
+			else
+				perror(agv[0]);
+		}
 	}
 	free(buff);
-	exit(0);
+	return (0);
 }
