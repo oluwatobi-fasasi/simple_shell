@@ -17,7 +17,7 @@ int main(void)
 	while (nread >= 0)
 	{
 		if (isatty(STDIN_FILENO))
-			_puts("($) ");
+			_puts("#cisfun$ ");
 		nread = getline(&buff, &len, stream);
 		if (nread == -1)
 		{
