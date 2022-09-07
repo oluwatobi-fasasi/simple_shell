@@ -17,7 +17,7 @@ int _strlen(const char *str)
 /**
  * splitstr - return a pointer to an array
  * @str: string argument to split
- *
+ * @wc: integer argument for word count
  * @delim: what char to split at
  * Return: a pointer to an array of delimit string
  */
@@ -28,11 +28,11 @@ char **splitstr(char *str, char *delim, int wc)
 	char **ptoken;
 	int i = 0;
 
-	ptoken = malloc(sizeof(char *) * wc + 1);
+	ptoken = malloc(sizeof(char *) * (wc + 1));
 	if (ptoken == NULL)
 		return (NULL);
 	if (str[_strlen(str) - 1] == '\n')
-		str[_strlen(str) -1] = '\0';
+		str[_strlen(str) - 1] = '\0';
 	tmp = _strdup(str);
 	token = strtok(tmp, delim);
 	while (token)
@@ -62,12 +62,12 @@ char *_strdup(const char *str)
 		copy[i] = str[i];
 		i++;
 	}
-	copy[i] = str[i];
+	copy[i] = '\0';
 	return (copy);
 }
 
 /**
- * _strncat - concatenate strings
+ * pathcat - concatenate strings
  * @src: string to concate
  * @dest: address to concate to
  * @len: length of src
@@ -111,9 +111,9 @@ int _strncmp(const char *str1, const char *str2, int len)
 {
 	int i;
 
-	for (i = 0; i <= len && str1[i] == str2[i]; i++)
+	for (i = 0; str1[i] == str2[i]; i++)
 	{
-		if (str2[i] == '\0')
+		if (str2[i + 1] == '\0' && str2[len] == '\0')
 			return (0);
 	}
 	return (str1[i] - str2[i]);
