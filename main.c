@@ -27,7 +27,6 @@ int main(void)
 		}
 		wc = wordcount(buff);
 		argv = splitstr(buff, " \n\t", wc);
-		argv[0] = findpath(argv[0]);
 		if (argv[0] != NULL)
 			_exec(argv);
 	}
