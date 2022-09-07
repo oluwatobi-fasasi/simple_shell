@@ -20,7 +20,7 @@ int main(int argc, char *agv[])
 	while (nread >= 0)
 	{
 		if (isatty(STDIN_FILENO))
-			_puts("#cisfun$ ");
+			_puts("($) ");
 		nread = getline(&buff, &len, stream);
 		if (nread == -1)
 		{
