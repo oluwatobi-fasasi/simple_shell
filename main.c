@@ -15,6 +15,7 @@ int main(int argc, char *agv[])
 	int wc;
 	char **argv;
 	ssize_t nread = 0;
+	struct stat st;
 
 	while (nread >= 0)
 	{
@@ -29,9 +30,11 @@ int main(int argc, char *agv[])
 		}
 		wc = wordcount(buff);
 		argv = splitstr(buff, " \n\t", wc);
-		argv[0] = findpath(argv[0]);
-		if (argv[0] != NULL && argc == 1)
+		/*argv[0] = findpath(argv[0]);*/
+		if (argv[0] != NULL && argc == 1 && stat(argv[0], &st) == 0)
 			_exec(argv, agv[0]);
+		else
+			perror(agv[0]);
 	}
 	free(buff);
 	exit(0);
