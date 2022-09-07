@@ -36,7 +36,7 @@ int main(int argc, char *agv[])
 		/*argv[0] = findpath(argv[0]);*/
 		if (argv[0] != NULL && argc == 1 && stat(argv[0], &st) == 0)
 			_exec(argv, agv[0]);
-		else if (_strlen(buff) > 1)
+		else if (_strlen(buff) >= 1)
 			perror(agv[0]);
 	}
 	free(buff);
