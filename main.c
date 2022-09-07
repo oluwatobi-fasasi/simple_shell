@@ -12,8 +12,8 @@ int main(int argc, char *agv[])
 	char *buff = NULL;
 	size_t len = 0;
 	FILE *stream = stdin;
-	int wc;
-	char **argv;
+	/*int wc;*/
+	char *argv[2];
 	ssize_t nread = 0;
 	struct stat st;
 
@@ -28,8 +28,11 @@ int main(int argc, char *agv[])
 				_puts("\n");
 			break;
 		}
-		wc = wordcount(buff);
-		argv = splitstr(buff, " \n\t", wc);
+		buff[_strlen(buff) - 1] = '\0';
+		argv[0] = buff;
+		argv[1] = NULL;
+		/*wc = wordcount(buff);*/
+		/*argv = splitstr(buff, " \n\t", wc);*/
 		/*argv[0] = findpath(argv[0]);*/
 		if (argv[0] != NULL && argc == 1 && stat(argv[0], &st) == 0)
 			_exec(argv, agv[0]);
