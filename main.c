@@ -2,10 +2,12 @@
 
 /**
  * main - a simple shell
+ * @argc: argument count
+ * @agv: argument vector
  *
  * Return: 0 on success
  */
-int main(void)
+int main(int argc, char *agv[])
 {
 	char *buff = NULL;
 	size_t len = 0;
@@ -27,9 +29,9 @@ int main(void)
 		}
 		wc = wordcount(buff);
 		argv = splitstr(buff, " \n\t", wc);
-		argv[0] = findpath(argv[0]);
-		if (argv[0] != NULL)
-			_exec(argv);
+		/*argv[0] = findpath(argv[0]);*/
+		if (argv[0] != NULL && argc == 1)
+			_exec(argv, agv[0]);
 	}
 	free(buff);
 	exit(0);

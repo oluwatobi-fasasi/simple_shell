@@ -23,6 +23,6 @@ char *findpath(char *cmd);
 char *_getenv(const char *name);
 int _strncmp(const char *str1, const char *str2, int len);
 int delim_nter(char *str, char *delim);
-int _exec(char **argv);
+int _exec(char **argv, char *str);
 
 #endif
