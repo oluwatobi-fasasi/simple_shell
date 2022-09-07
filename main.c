@@ -19,7 +19,7 @@ int main(int argc, char *agv[])
 	while (nread >= 0)
 	{
 		if (isatty(STDIN_FILENO))
-			_puts("($) ");
+			_puts("#cisfun$ ");
 		nread = getline(&buff, &len, stream);
 		if (nread == -1)
 		{
@@ -29,7 +29,7 @@ int main(int argc, char *agv[])
 		}
 		wc = wordcount(buff);
 		argv = splitstr(buff, " \n\t", wc);
-		/*argv[0] = findpath(argv[0]);*/
+		argv[0] = findpath(argv[0]);
 		if (argv[0] != NULL && argc == 1)
 			_exec(argv, agv[0]);
 	}
