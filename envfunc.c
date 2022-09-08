@@ -48,7 +48,7 @@ char *findpath(char *cmd)
 {
 	struct stat st;
 	char *getpath;
-	char **ptokens = NULL;
+	char **ptokens;
 	int deli_num;
 	int i = 0;
 
@@ -66,13 +66,15 @@ char *findpath(char *cmd)
 				if ((stat(ptokens[i], &st) == 0))
 				{
 					free(cmd);
-					cmd = ptokens[i];
+					cmd = _strdup(ptokens[i]);
+					free(getpath);
+					freevect(ptokens);
 					return (cmd);
 				}
 				i++;
 			}
 			free(getpath);
-			free(ptokens);
+			freevect(ptokens);
 		}
 		if (stat(cmd, &st) == 0)
 			return (cmd);
