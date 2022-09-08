@@ -18,7 +18,7 @@ char *_getenv(const char *name)
 		if (_strncmp(environ[i], name, len) == 0)
 		{
 			len_env = _strlen(environ[i]);
-			val = malloc((len_env - len) + 1);
+			val = malloc(len_env - len);
 			if (val == NULL)
 				return (NULL);
 			if (environ[i][len] == '=')
@@ -74,7 +74,6 @@ char *findpath(char *cmd)
 				i++;
 			}
 			free(getpath);
-			freevect(ptokens);
 		}
 		if (stat(cmd, &st) == 0)
 			return (cmd);

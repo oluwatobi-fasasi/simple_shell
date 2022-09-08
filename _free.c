@@ -7,16 +7,12 @@
  */
 void freevect(char **argv)
 {
-	int i = 0;
 	char **tmp = argv;
 
 	if (argv)
 	{
-		while (argv[i])
-		{
-			free(argv[i]);
-			i++;
-		}
+		while (*argv)
+			free(*argv++);
 		free(tmp);
 	}
 }

@@ -38,6 +38,7 @@ int main(int argc, char *agv[])
 			else
 				perror(agv[0]);
 		}
+		freevect(argv);
 	}
 	free(buff);
 	return (0);
