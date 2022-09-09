@@ -10,6 +10,7 @@
 #include <string.h>
 #include <signal.h>
 #include <sys/stat.h>
+#include <errno.h>
 
 extern char **environ;
 int _strlen(const char *str);
@@ -26,5 +27,6 @@ int delim_nter(char *str, char *delim);
 int _exec(char **argv, char *str);
 void freevect(char **argv);
 void freepath(char *str);
+int _perror(const char *str);
 
 #endif

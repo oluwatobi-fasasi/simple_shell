@@ -9,7 +9,7 @@ char *_getenv(const char *name)
 {
 	int i = 0;
 	int len = _strlen(name);
-	char *val;
+	char *val = NULL;
 	int k = 0;
 	int len_env;
 
@@ -57,6 +57,8 @@ char *findpath(char *cmd)
 		if ((stat(cmd, &st) != 0) && cmd[0] != '\\')
 		{
 			getpath = _getenv("PATH");
+			if (getpath == NULL)
+				return (cmd);
 			deli_num = delim_nter(getpath, ":") + 1;
 			ptokens = splitstr(getpath, ":", deli_num);
 
@@ -74,10 +76,11 @@ char *findpath(char *cmd)
 				i++;
 			}
 			free(getpath);
+			freevect(ptokens);
 		}
 		if (stat(cmd, &st) == 0)
 			return (cmd);
 	}
-	free(cmd);
-	return (NULL);
+
+	return (cmd);
 }

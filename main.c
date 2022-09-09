@@ -29,7 +29,7 @@ int main(int argc, char *agv[])
 		}
 		buff[_strlen(buff) - 1] = '\0';
 		wc = wordcount(buff);
-		if (buff[0] != '\n' && argc == 1 && wc > 0)
+		if (argc == 1 && wc > 0)
 		{
 			argv = splitstr(buff, " \n\t", wc);
 			argv[0] = findpath(argv[0]);
@@ -37,8 +37,8 @@ int main(int argc, char *agv[])
 				_exec(argv, agv[0]);
 			else
 				perror(agv[0]);
+
 		}
-		freevect(argv);
 	}
 	free(buff);
 	return (0);
