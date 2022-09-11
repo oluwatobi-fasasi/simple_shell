@@ -29,7 +29,7 @@ int main(int argc, char *agv[])
 		}
 		buff[_strlen(buff) - 1] = '\0';
 		wc = wordcount(buff);
-		if (argc == 1 && wc > 0)
+		if (argc == 1 && wc == 0)
 		{
 			argv = splitstr(buff, " \n\t", wc);
 			argv[0] = findpath(argv[0]);
