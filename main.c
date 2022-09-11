@@ -30,15 +30,14 @@ int main(int argc, char *agv[])
 		buff[_strlen(buff) - 1] = '\0';
 		wc = wordcount(buff);
 		argv = splitstr(buff, " \n\t", wc);
-		if ((argc == 1 && wc == 1) || (wc == 2 && argv[1][0] == '/'))
+		if (argc == 1 && wc > 0)
 		{
+			argv[0] = findpath(argv[0]);
 			if (argv[0] && stat(argv[0], &st) == 0)
 				_exec(argv, agv[0]);
 			else
 				perror(agv[0]);
 		}
-		else if (wc >= 2)
-			perror(agv[0]);
 	}
 	free(buff);
 	return (0);
