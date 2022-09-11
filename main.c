@@ -39,8 +39,6 @@ int main(int argc, char *agv[])
 				perror(agv[0]);
 
 		}
-		else
-			perror(agv[0]);
 	}
 	free(buff);
 	return (0);
