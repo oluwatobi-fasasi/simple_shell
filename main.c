@@ -4,7 +4,6 @@
  * main - a simple shell
  * @argc: argument count
  * @agv: argument vector
- *
  * Return: 0 on success
  */
 int main(int argc, char *agv[])
@@ -15,6 +14,7 @@ int main(int argc, char *agv[])
 	int wc;
 	char **argv;
 	ssize_t nread = 0;
+	struct stat st;
 
 	while (nread >= 0)
 	{
@@ -29,17 +29,15 @@ int main(int argc, char *agv[])
 		}
 		buff[_strlen(buff) - 1] = '\0';
 		wc = wordcount(buff);
-		if (argc == 1 && wc == 1)
+		argv = splitstr(buff, " \n\t", wc);
+		if ((argc == 1 && wc == 1) || (wc == 2 && argv[1][0] == '/'))
 		{
-			argv = splitstr(buff, " \n\t", wc);
-			/*argv[0] = findpath(argv[0]);*/
-			if (argv[0] && access(argv[0], X_OK) == 0)
+			if (argv[0] && stat(argv[0], &st) == 0)
 				_exec(argv, agv[0]);
-			else 
+			else
 				perror(agv[0]);
-
 		}
-		else if (wc > 1)
+		else if (wc >= 2)
 			perror(agv[0]);
 	}
 	free(buff);
