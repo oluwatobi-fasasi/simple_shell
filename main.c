@@ -39,5 +39,6 @@ int main(int argc, char *agv[])
 		}
 	}
 	free(buff);
+	freevect(argv);
 	return (0);
 }
