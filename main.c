@@ -35,10 +35,12 @@ int main(int argc, char *agv[])
 			/*argv[0] = findpath(argv[0]);*/
 			if (argv[0] && access(argv[0], X_OK) == 0)
 				_exec(argv, agv[0]);
-			else
+			else 
 				perror(agv[0]);
 
 		}
+		else if (wc > 1)
+			perror(agv[0]);
 	}
 	free(buff);
 	return (0);
