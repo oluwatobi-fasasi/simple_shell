@@ -32,7 +32,7 @@ int main(int argc, char *agv[])
 		if (argc == 1 && wc == 1)
 		{
 			argv = splitstr(buff, " \n\t", wc);
-			argv[0] = findpath(argv[0]);
+			/*argv[0] = findpath(argv[0]);*/
 			if (argv[0] && access(argv[0], X_OK) == 0)
 				_exec(argv, agv[0]);
 			else
