@@ -33,7 +33,7 @@ int main(int argc, char *agv[])
 		if (argc == 1 && wc > 0)
 		{
 			if (wc == 1)
-				exec_builtin(argv[0]);
+				exec_builtin(buff, argv);
 			argv[0] = findpath(argv[0]);
 			if (argv[0] && (access(argv[0], X_OK) == 0))
 				_exec(argv, agv[0]);
