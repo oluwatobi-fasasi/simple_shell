@@ -14,7 +14,7 @@ int main(int argc, char *agv[])
 	int wc;
 	char **argv;
 	ssize_t nread = 0;
-	struct stat st;
+	/*struct stat st;*/
 
 	while (nread >= 0)
 	{
@@ -32,8 +32,10 @@ int main(int argc, char *agv[])
 		argv = splitstr(buff, " \n\t", wc);
 		if (argc == 1 && wc > 0)
 		{
+			if (wc == 1)
+				exec_builtin(argv[0]);
 			argv[0] = findpath(argv[0]);
-			if (argv[0] && (access(argv[0], X_OK) == 0) && stat(argv[0], &st) == 0)
+			if (argv[0] && (access(argv[0], X_OK) == 0))
 				_exec(argv, agv[0]);
 			else
 				perror(agv[0]);

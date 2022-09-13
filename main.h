@@ -28,5 +28,6 @@ int _exec(char **argv, char *str);
 void freevect(char **argv);
 void freepath(char *str);
 int _perror(const char *str);
+void exec_builtin(char *str);
 
 #endif
