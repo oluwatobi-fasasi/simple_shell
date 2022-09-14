@@ -58,7 +58,10 @@ char *findpath(char *cmd)
 		{
 			getpath = _getenv("PATH");
 			if (getpath == NULL)
-				return (cmd);
+			{
+				perror(cmd);
+				exit(-1);
+			}
 			deli_num = delim_nter(getpath, ":") + 1;
 			ptokens = splitstr(getpath, ":", deli_num);
 

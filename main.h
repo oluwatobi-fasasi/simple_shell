@@ -29,5 +29,6 @@ void freevect(char **argv);
 void freepath(char *str);
 int _perror(const char *str);
 void exec_builtin(char *str, char **argv);
+int check_cmd(char *str);
 
 #endif
