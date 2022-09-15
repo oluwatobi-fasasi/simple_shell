@@ -37,7 +37,7 @@ int main(int argc, char *agv[])
 		{
 			n = check_cmd(argv[0]);
 			if (n >= 0)
-				cmd[n].f(argv[0], argv);
+				cmd[n].f(buff, argv);
 			else
 				_exec(argv, agv[0]);
 		}

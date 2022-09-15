@@ -10,6 +10,7 @@ void exitfunc(char *str, char **argv)
 {
 	if (strncmp(str, "exit", 4) == 0)
 	{
+		free(str);
 		freevect(argv);
 		exit(0);
 	}
