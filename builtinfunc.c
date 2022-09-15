@@ -29,13 +29,10 @@ void _printenv(char *str, char **argv)
 	if (str != NULL && argv != NULL)
 	{
 		while (environ[i])
-			i++;
-		i--;
-		while (environ[i])
 		{
 			_puts(environ[i]);
 			_puts("\n");
-			i--;
+			i++;
 		}
 	}
 }
