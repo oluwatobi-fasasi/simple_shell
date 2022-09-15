@@ -1,22 +1,31 @@
 #include "main.h"
 
 /**
- * exec_builtin - executes the builtin
+ * exitfunc - executes the builtin
  * @str: a string argument
- * @argv: argument vector:wq
+ * @argv: argument vector
  * Return: void
  */
-void exec_builtin(char *str, char **argv)
+void exitfunc(char *str, char **argv)
 {
-	int i = 0;
-
 	if (strncmp(str, "exit", 4) == 0)
 	{
 		freevect(argv);
-		free(str);
 		exit(0);
 	}
-	if (strncmp(str, "env", 3) == 0)
+}
+
+/**
+ * _printenv - print environment variables
+ * @str: string command
+ * @argv: argument vector
+ * Return: void
+ */
+void _printenv(char *str, char **argv)
+{
+	int i = 0;
+
+	if (str != NULL && argv != NULL)
 	{
 		while (environ[i])
 			i++;
@@ -28,9 +37,7 @@ void exec_builtin(char *str, char **argv)
 			i--;
 		}
 	}
-
 }
-
 /**
  * check_cmd - check to see is input is a built in
  * @str: a string argument
@@ -39,13 +46,15 @@ void exec_builtin(char *str, char **argv)
 int check_cmd(char *str)
 {
 	int i = 0;
-	char *built_cmd[3] = {"exit", "env", NULL};
+	char *built_cmd[] = {"exit", "env", NULL};
 
 	while (built_cmd[i])
 	{
 		if (strncmp(built_cmd[i], str, _strlen(built_cmd[i])) == 0)
-			return (0);
+		{
+			return (i);
+		}
 		i++;
 	}
-	return (1);
+	return (-1);
 }

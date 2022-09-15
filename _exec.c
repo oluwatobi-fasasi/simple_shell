@@ -8,23 +8,30 @@
  */
 int _exec(char **argv, char *str)
 {
-	pid_t child_pid = fork();
+	pid_t child_pid;
 	int status;
 
-	if (child_pid == -1)
+	argv[0] = findpath(argv[0]);
+	if (argv[0] && (access(argv[0], X_OK) == 0))
 	{
-		perror(str);
-		return (1);
-	}
-	if (child_pid == 0)
-	{
-		if (execve(argv[0], argv, environ) == -1)
+		child_pid = fork();
+		if (child_pid == -1)
+		{
 			perror(str);
-		sleep(3);
+			return (1);
+		}
+		if (child_pid == 0)
+		{
+			if (execve(argv[0], argv, environ) == -1)
+				perror(str);
+			sleep(3);
+		}
+		else
+		{
+			wait(&status);
+		}
 	}
 	else
-	{
-		wait(&status);
-	}
+		perror(str);
 	return (0);
 }
