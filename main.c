@@ -33,7 +33,7 @@ int main(int argc, char *agv[])
 		buff[_strlen(buff) - 1] = '\0';
 		wc = wordcount(buff);
 		argv = splitstr(buff, " \n\t", wc);
-		if (argc == 1 && wc > 0)
+		if (argc > 0 && wc > 0)
 		{
 			n = check_cmd(argv[0]);
 			if (n >= 0)
